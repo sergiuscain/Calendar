@@ -16,6 +16,7 @@ namespace Calendar.Views
         {
             InitializeComponent();
             currentDate = DateTime.Today;
+            Card = CardStorage.TryFindCard(currentDate);
             UpdateDateDisplay();
         }
         private void OnCalendarButtonClick(object sender, RoutedEventArgs e)
@@ -33,6 +34,8 @@ namespace Calendar.Views
         private void UpdateDateDisplay()
         {
             CalendarButton.Content = currentDate.ToString("dd MMMM yyyy");
+            ItemContent.Text = Card?.Content ?? " ";
+            ItemTitle.Text = Card?.Title ?? " ";
         }
         private void OnPrevDateButtonClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
@@ -46,7 +49,16 @@ namespace Calendar.Views
             currentDate = Card.Date;
             UpdateDateDisplay();
         }
-
+        
+        private void AddContentClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+        {
+            var newContent = newItemContent.Text;
+            var newTitle = newItemTitle.Text;
+            Card.Content = newContent;
+            Card.Title = newTitle;
+            CardStorage.UpdateCard(Card);
+            UpdateDateDisplay();
+        }
     }
 }
  

@@ -23,30 +23,39 @@ namespace Calendar.Services
 
         public void AddCard(Card card)
         {
-            this.Cards.Add(card);
-            this.SaveChanges();
+            Cards.Add(card);
+            SaveChanges();
         }
         public void RemoveCard(Card card)
         {
-            this.Cards.Remove(card);
-            this.SaveChanges();
+            Cards.Remove(card);
+            SaveChanges();
         }
 
         public Card TryFindCard(DateTime date)
         {
-            var card = this.Cards.FirstOrDefault(x => x.Date == date);
+            var card = Cards.FirstOrDefault(x => x.Date == date);
             if (card == null)
             {
                 card = new Card()
                 {
                     Date = date,
-                    Content = $"TestContent{r.Next(100)}",
-                    Title = $"TestTitle{r.Next(100)}"
+                    Content = $" ",
+                    Title = $" "
                 };
-                this.Cards.Add(card);
-                this.SaveChanges();
+                Cards.Add(card);
+                SaveChanges();
             }
             return card;
+        }
+        public void UpdateCard(Card card)
+        {
+            var lastCard = TryFindCard(card.Date);
+            if (lastCard != null)
+            {
+                lastCard = card;
+                SaveChanges();
+            }
         }
     }
 }

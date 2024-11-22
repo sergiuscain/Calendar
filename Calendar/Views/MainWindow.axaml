@@ -39,12 +39,16 @@
                     Content="Пред." />
             </Grid>
 
-            <TextBlock
-                Name="CurrentDateText"
-                Grid.Column="1"
-                Margin="10"
-                FontSize="24"
-                TextAlignment="Center" />
+            <StackPanel Grid.Column="1" Classes="ContentGrid">
+                <TextBox Name="newItemTitle" Text="Введите заголовок" />
+                <TextBox Name="newItemContent" Text="Введите описание" />
+                <Button
+                    Name="AddContentButton"
+                    Click="AddContentClick"
+                    Content="Обновить данные" />
+                <TextBlock Name="ItemTitle" />
+                <TextBlock Name="ItemContent" />
+            </StackPanel>
             <Grid Grid.Column="2" Classes="Panel1">
                 <Button
                     Name="NextDateButton"

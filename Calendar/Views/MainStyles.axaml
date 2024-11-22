@@ -6,11 +6,14 @@
     </Design.PreviewWith>
 
     <Style Selector="Grid.Panel1">
-        <Setter Property="Background" Value="#0b050c" /> 
+        <Setter Property="Background" Value="#0b050c" />
         <!--  Тёмно-розовый  -->
     </Style>
     <Style Selector="Grid.Panel2">
-        <Setter Property="Background" Value="#3f1047" /> 
+        <Setter Property="Background" Value="#3f1047" />
         <!--  Розовый светлее  -->
+    </Style>
+    <Style Selector="Grid.ContentGrid">
+        <Setter Property="Background" Value="#416a58" />
     </Style>
 </Styles>
