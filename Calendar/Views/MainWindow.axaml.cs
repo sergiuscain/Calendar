@@ -1,6 +1,8 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Calendar.Models;
+using Calendar.Services;
 using System;
 
 namespace Calendar.Views
@@ -8,6 +10,8 @@ namespace Calendar.Views
     public partial class MainWindow : Window
     {
         private DateTime currentDate;
+        private Card Card;
+        public static CardStorage CardStorage = new CardStorage();
         public MainWindow()
         {
             InitializeComponent();
@@ -22,6 +26,8 @@ namespace Calendar.Views
         public void SwitchToDate(DateTime newDate)
         {
             currentDate = newDate; // Обновляем текущую дату
+            Card = CardStorage.TryFindCard(newDate); //
+
             UpdateDateDisplay(); // Обновляем отображение даты
         }
         private void UpdateDateDisplay()
@@ -30,12 +36,14 @@ namespace Calendar.Views
         }
         private void OnPrevDateButtonClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
-            currentDate = currentDate.AddDays(-1); //Здесь будем брать из базы данных предедущий день
+            Card =  CardStorage.TryFindCard(currentDate.AddDays(-1)); 
+            currentDate = Card.Date;
             UpdateDateDisplay();
         }
         private void OnNextDateButtonClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {
-            currentDate = currentDate.AddDays(1);  //Здесь будем брать из базы данных следующий день
+            Card =  CardStorage.TryFindCard(currentDate.AddDays(+1));
+            currentDate = Card.Date;
             UpdateDateDisplay();
         }
 
