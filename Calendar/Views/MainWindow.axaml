@@ -19,16 +19,31 @@
         -->
         <vm:MainWindowViewModel />
     </Design.DataContext>
+    <Grid RowDefinitions="*,25*">
+        <Grid Grid.Row="0">
+            <Button Name="CalendarButton" Click="OnCalendarButtonClick">Календарь</Button>
+        </Grid>
+        <Grid Grid.Row="1" ColumnDefinitions="*, 20*,*">
+            <Button
+                Name="PrevDateButton"
+                Grid.Column="0"
+                Click="OnPrevDateButtonClick">
+                Предыдущая
+            </Button>
+            <TextBlock
+                Name="CurrentDateText"
+                Grid.Column="1"
+                Margin="10"
+                FontSize="24"
+                TextAlignment="Center" />
+            <Button
+                Name="NextDateButton"
+                Grid.Column="2"
+                Click="OnNextDateButtonClick">
+                Следующая
+            </Button>
+        </Grid>
+    </Grid>
 
-    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-        <Button Name="PrevDateButton" Click="OnPrevDateButtonClick">Предыдущая</Button>
-        <TextBlock
-            Name="CurrentDateText"
-            Margin="10"
-            VerticalAlignment="Center"
-            FontSize="24" />
-
-        <Button Name="NextDateButton" Click="OnNextDateButtonClick">Следующая</Button>
-    </StackPanel>
 
 </Window>

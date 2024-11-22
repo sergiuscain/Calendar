@@ -1,3 +1,4 @@
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using System;
@@ -13,6 +14,16 @@ namespace Calendar.Views
             currentDate = DateTime.Today;
             UpdateDateDisplay();
         }
+        private void OnCalendarButtonClick(object sender, RoutedEventArgs e)
+        {
+            var calendarWindow = new CalendarWindow(currentDate, this); // Передаем текущую дату
+            calendarWindow.Show();
+        }
+        public void SwitchToDate(DateTime newDate)
+        {
+            currentDate = newDate; // Обновляем текущую дату
+            UpdateDateDisplay(); // Обновляем отображение даты
+        }
         private void UpdateDateDisplay()
         {
             CurrentDateText.Text = currentDate.ToString("dd MMMM yyyy");
@@ -27,6 +38,7 @@ namespace Calendar.Views
             currentDate = currentDate.AddDays(1);  //Здесь будем брать из базы данных следующий день
             UpdateDateDisplay();
         }
+
     }
 }
  

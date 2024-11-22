@@ -19,13 +19,10 @@ namespace Calendar
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                // Line below is needed to remove Avalonia data validation.
-                // Without this line you will get duplicate validations from both Avalonia and CT
-                BindingPlugins.DataValidators.RemoveAt(0);
-                desktop.MainWindow = new MainWindow
-                {
-                    DataContext = new MainWindowViewModel(),
-                };
+                BindingPlugins.DataValidators.RemoveAt(0); // Remove the built-in data validator that throws an exception when a null value is passed to a property
+                var mainWindow = new MainWindow();
+                desktop.MainWindow = mainWindow;
+                mainWindow.Show();
             }
 
             base.OnFrameworkInitializationCompleted();
