@@ -26,7 +26,7 @@ namespace Calendar.Views
         }
         private void UpdateDateDisplay()
         {
-            CurrentDateText.Text = currentDate.ToString("dd MMMM yyyy");
+            CalendarButton.Content = currentDate.ToString("dd MMMM yyyy");
         }
         private void OnPrevDateButtonClick(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
         {

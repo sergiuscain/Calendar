@@ -12,6 +12,9 @@
     Icon="/Assets/avalonia-logo.ico"
     mc:Ignorable="d">
 
+    <Window.Styles>
+        <StyleInclude Source="/Views/MainStyles.axaml" />
+    </Window.Styles>
     <Design.DataContext>
         <!--
             This only sets the DataContext for the previewer in an IDE,
@@ -19,30 +22,39 @@
         -->
         <vm:MainWindowViewModel />
     </Design.DataContext>
-    <Grid RowDefinitions="*,25*">
-        <Grid Grid.Row="0">
-            <Button Name="CalendarButton" Click="OnCalendarButtonClick">Календарь</Button>
-        </Grid>
-        <Grid Grid.Row="1" ColumnDefinitions="*, 20*,*">
+    <Grid RowDefinitions="*,25*,*">
+        <Grid Grid.Row="0" Classes="Panel2">
             <Button
-                Name="PrevDateButton"
-                Grid.Column="0"
-                Click="OnPrevDateButtonClick">
-                Предыдущая
+                Name="CalendarButton"
+                HorizontalAlignment="Center"
+                Click="OnCalendarButtonClick">
+                Календарь
             </Button>
+        </Grid>
+        <Grid Grid.Row="1" ColumnDefinitions="auto,*,auto">
+            <Grid Grid.Column="0" Classes="Panel1">
+                <Button
+                    Name="PrevDateButton"
+                    Click="OnPrevDateButtonClick"
+                    Content="Пред." />
+            </Grid>
+
             <TextBlock
                 Name="CurrentDateText"
                 Grid.Column="1"
                 Margin="10"
                 FontSize="24"
                 TextAlignment="Center" />
-            <Button
-                Name="NextDateButton"
-                Grid.Column="2"
-                Click="OnNextDateButtonClick">
-                Следующая
-            </Button>
+            <Grid Grid.Column="2" Classes="Panel1">
+                <Button
+                    Name="NextDateButton"
+                    Grid.Column="2"
+                    Click="OnNextDateButtonClick"
+                    Content="След" />
+            </Grid>
         </Grid>
+        <Grid Grid.Row="2" Classes="Panel1" />
+
     </Grid>
 
 
